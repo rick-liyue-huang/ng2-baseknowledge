@@ -1,0 +1,17 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div>
+  <a [routerLink]="['/home']">Home Page</a>
+  <!--<a [routerLink]="['/product']" [queryParams]="{id:1}">Product Page</a>-->
+  <a [routerLink]="['/product', 1]">Product Page</a>
+
+  <input type="button" value="producton info" (click)="toProductDetails()">
+
+  <a [routerLink]="[{outlets: {primary: 'home', aux: 'chat'}}]">Begin Chat</a>
+  <a [routerLink]="[{outlets: {aux: null}}]">End Chat</a>
+
+</div>
+
+<router-outlet></router-outlet>
+
+<!--auxiliary router-oulet-->
+<router-outlet name="aux"></router-outlet>
