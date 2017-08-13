@@ -1,0 +1,87 @@
+<p>
+  bind works!
+</p>
+
+<button (click)="doOnClick($event)">Click Me</button>
+
+<hr>
+<img [src]="imgUrl" alt="">
+
+<hr>
+
+<img src="{{imgUrl}}" alt="">
+
+<hr>
+
+<input value="Tom" (input)="doOnInput($event)" />
+
+
+<hr>
+
+<button disabled>Click Me</button>
+
+
+<hr>
+
+<table>
+  <tr>
+    <td [attr.colspan]="size">Rick Huang</td>
+    <td [class]="divClass">Rick</td>
+    <td class="a b" [class.c]="isBig">Huang</td>
+    <td [ngClass]="divClass1">liyue huang</td>
+    <td [style.color]="isDev ? 'red' : 'blue'">ok</td>
+    <td [style.font-size.em]="isDev ? 3 : 1">hello</td>
+    <td [ngStyle]="divStyle">haha</td>
+  </tr>
+</table>
+
+
+<hr>
+<input [value]="name" (input)="doOnInput1($event)">
+<!--<input [(ngModel)]="name">-->
+{{name}}
+
+
+<hr>
+
+<p>my birthday is {{birthday | date: 'dd/MM/yyyy HH:mm:ss' | lowercase}}</p>
+<p>{{pi | number: '2.2-2'}}</p>
+<!--<p>{{pi | async}}</p>-->
+
+<p>try the self-defined pipe: {{trynumber | multiple: '2'}}</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
