@@ -7,45 +7,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BindComponent implements OnInit {
 
-  imgUrl: string = "http://placehold.it/400x320";
+  private imgUrl: string = "http://placehold.it/800x300";
 
-  size:number = 2;
+  private  size: number = 2;
 
-  divClass: string;
+  private divClass: string;
 
-  isBig: boolean = false;
+  private isBig: boolean = false;
 
-  name: string;
-
-  divClass1: any = {
-    a: false,
+  private divClass1: any = {
+    a: true,
     b: false,
     c: false
   };
 
-  isDev: boolean = true;
+  private isDev: boolean = true;
 
-  divStyle: any = {
+  private divStyle: any = {
     color: 'red',
-    background: 'yellow'
+    background: 'blue'
   };
 
-  birthday: Date = new Date();
+  private name1: string;
 
-  pi:number = 3.1415926;
-
-  trynumber: number = 3;
-
-  constructor() {
-    setInterval(() => {
-      this.name = "Tom";
-    }, 3000);
-  }
+  constructor() { }
 
   ngOnInit() {
+
     setTimeout(() => {
-      this.divClass = 'a b c';
+      this.divClass = "a b c";
       this.isBig = true;
+
       this.divClass1 = {
         a: true,
         b: true,
@@ -53,11 +45,14 @@ export class BindComponent implements OnInit {
       };
       this.isDev = false;
       this.divStyle = {
-        color: 'yellow',
+        color: 'blue',
         background: 'red'
       };
+    }, 3000);
 
-    }, 2000);
+    setInterval(() => {
+      this.name1 = "Tom";
+    }, 3000);
   }
 
   doOnClick(event: any) {
@@ -66,19 +61,22 @@ export class BindComponent implements OnInit {
 
   doOnInput(event: any) {
 
-    //dom attribute and html attribute difference
+    // get the dom 'value' property
+    console.log("changeable dom value property", event.target.value);
 
-    //dom attribute is changeable
-    console.log(event.target.value);
-
-    //html attribute is unchangeable
-    console.log(event.target.getAttribute('value'));
+    // get the html 'value' attribute
+    console.log('unchangeable html value attribute', event.target.getAttribute('value'));
   }
 
-  doOnInput1(event: any) {
-    this.name = event.target.value;
+  doOnInput1(event) {
+    this.name1 = event.target.value;
   }
+
 }
+
+
+
+
 
 
 

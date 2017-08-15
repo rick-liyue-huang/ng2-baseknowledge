@@ -5,7 +5,8 @@
 <button (click)="doOnClick($event)">Click Me</button>
 
 <hr>
-<img [src]="imgUrl" alt="">
+
+<img [src]="imgUrl">
 
 <hr>
 
@@ -13,43 +14,54 @@
 
 <hr>
 
-<input value="Tom" (input)="doOnInput($event)" />
+<input type="text" value="Tom" (input)="doOnInput($event)" >
 
-
-<hr>
-
-<button disabled>Click Me</button>
+<button disabled>button</button>
 
 
 <hr>
 
 <table>
   <tr>
+    <!--<td colspan="{{1+1}}">Rick Huang</td>-->
+
+    <!--colspan is html attribute -->
     <td [attr.colspan]="size">Rick Huang</td>
-    <td [class]="divClass">Rick</td>
-    <td class="a b" [class.c]="isBig">Huang</td>
-    <td [ngClass]="divClass1">liyue huang</td>
-    <td [style.color]="isDev ? 'red' : 'blue'">ok</td>
-    <td [style.font-size.em]="isDev ? 3 : 1">hello</td>
-    <td [ngStyle]="divStyle">haha</td>
   </tr>
 </table>
 
 
 <hr>
-<input [value]="name" (input)="doOnInput1($event)">
-<!--<input [(ngModel)]="name">-->
-{{name}}
 
+<div [class]="divClass">class</div>
 
 <hr>
 
-<p>my birthday is {{birthday | date: 'dd/MM/yyyy HH:mm:ss' | lowercase}}</p>
-<p>{{pi | number: '2.2-2'}}</p>
-<!--<p>{{pi | async}}</p>-->
+<div class="a b" [class.c]="isBig">class.big</div>
 
-<p>try the self-defined pipe: {{trynumber | multiple: '2'}}</p>
+<hr>
 
+<div [ngClass]="divClass1">ngClass</div>
+
+<hr>
+
+<div [style.color]="isDev ? 'red' : 'blue'">style.color</div>
+
+<hr>
+
+<div [style.font-size.em]="isDev ? '3' : 1">style.font-size.em</div>
+
+<hr>
+
+<div [ngStyle]="divStyle">divStyle</div>
+
+<hr>
+
+<input type="text" [value]="name1" (input)="doOnInput1($event)"> {{name1}}
+
+<hr>
+
+<!--<input [(ngModel)]="name1"> {{name1}}-->
 
 
 
