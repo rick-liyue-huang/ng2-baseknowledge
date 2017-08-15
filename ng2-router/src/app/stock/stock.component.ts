@@ -24,6 +24,7 @@ export class StockComponent implements OnInit {
    //  this.stockId = this.routeInfo.snapshot.params["id"];  // the second one
    // this.routeInfo.params.subscribe((params: Params) => this.stockId = params["id"]); // used to jump to itself
 
+    // guard resolve
     this.routeInfo.data.subscribe((data: {stock: Stock}) => {
       this.stock = data.stock;
     });
