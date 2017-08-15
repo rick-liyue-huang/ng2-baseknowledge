@@ -1,0 +1,31 @@
+
+<div class="stock">
+  <p>
+    this is stock information component
+  </p>
+  <p>
+    <!--stock id is: {{stockId}}-->
+    stock id is: {{stock.id}}
+  </p>
+  <p>
+    stock name is: {{stock.name}}
+  </p>
+
+
+  <!--the third one-->
+  <p>
+    isPro is: {{isPro}}
+  </p>
+
+  <p>
+    <input type="button" (click)="focus = !focus" value="Focus">
+  </p>
+
+  <a [routerLink]="['./']">Buyer Info</a>
+  <a [routerLink]="['./seller', 88]">Seller Info</a>
+
+  <router-outlet></router-outlet>
+
+</div>
+
+

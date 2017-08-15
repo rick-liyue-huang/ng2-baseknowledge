@@ -12,7 +12,7 @@ will config the component with path,
 
 ```const routes: Routes = [
      {path: '', component: HomeComponent},
-     {path: 'product', component: ProductComponent},
+     {path: 'stock', component: StockComponent},
    
      // the default must be put at last
      {path: '**', component: Code404Component}
@@ -22,17 +22,17 @@ will config the component with path,
 in template file of 'app.component.html', it add the occupy flag of `<router-outlet></router-outlet>` to
 show the different component.
 
-` [routerLink]="['/']" `and ` this.router.navigate(['/product']); ` used to link the different
+` [routerLink]="['/']" `and ` this.router.navigate(['/stock']); ` used to link the different
 components. 
 
 
 Here has three ways to pass the parameters by router
 
-1. `/product?id=1&name=2` => `ActivatedRoute.queryParams[id]`
+1. `/stock?id=1&name=2` => `ActivatedRoute.queryParams[id]`
 
-2. `{path:/product/:id}` => `/product/1` => `ActivatedRoute.params[id]`
+2. `{path:/stock/:id}` => `/stock/1` => `ActivatedRoute.params[id]`
 
-3. `{path:/product, component: ProductComponent, data: [{isProd: true}]}` =>
+3. `{path:/stock, component: StockComponent, data: [{isProd: true}]}` =>
     `ActivatedRoute.data[0][isProd]`
     
 
@@ -40,9 +40,9 @@ here notice the difference between 'spanshot' and 'subscript'
 
 'subscript' used to route to itself 
 
-`this.productId = this.routeInfo.snapshot.queryParams["id"];`
+`this.stockId = this.routeInfo.snapshot.queryParams["id"];`
 
-`this.routeInfo.params.subscribe((params: Params) => this.productId = params["id"]);`
+`this.routeInfo.params.subscribe((params: Params) => this.stockId = params["id"]);`
 
 
 Redirect Route
@@ -54,13 +54,20 @@ the children router will use 'children array'
 
 ```
 {
-    path: 'product/:id',
-    component: ProductComponent,
+    path: 'stock/:id',
+    component: StockComponent,
     children: [
-      {path: '', component: ProductDescComponent},
+      {path: '', component: StockDescComponent},
       {path: 'seller/:id', component: SellerInfoComponent}
     ]
   },
+```
+
+here should notice: the relative route '['./']' in child route
+```
+<a [routerLink]="['./']">Buyer Info</a>
+<a [routerLink]="['./seller', 88]">Seller Info</a>
+
 ```
 
 
@@ -82,6 +89,7 @@ at last in 'app.component.html' add
 `<a [routerLink]="[{outlets: {aux: 'chat'}}]">Begin Chat</a>`
 
 
+Route Guard
 
 'CanActivate': deal with routing to some page,
 'CanDeactivate': deal with lefting some page, 
@@ -95,8 +103,7 @@ such as, 'when user has logined, he can route to some page'
 
 这些钩子就是 路由守卫
 
-
-
+Here I also define the 'stock.resolve.ts' to deal with the route resolve.
 
 
 

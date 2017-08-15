@@ -4,29 +4,31 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { ProductComponent } from './product/product.component';
+import { StockComponent } from './stock/stock.component';
 import { Code404Component } from './code404/code404.component';
-import { ProductDescComponent } from './product-desc/product-desc.component';
-import { SellerInfoComponent } from './seller-info/seller-info.component';
-import { ChatComponent } from './chat/chat.component';
-import { Product2Component } from './product2/product2.component';
+import { BuyerListComponent } from './buyer-list/buyer-list.component';
+import { SellerListComponent } from './seller-list/seller-list.component';
+import { ConsultComponent } from './consult/consult.component';
+import {PermissionGuard} from "./guard/permission.guard";
+import {FocusGuard} from "./guard/focus.guard";
+import {StockResolve} from "./guard/stock.resolve";
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ProductComponent,
+    StockComponent,
     Code404Component,
-    ProductDescComponent,
-    SellerInfoComponent,
-    ChatComponent,
-    Product2Component
+    BuyerListComponent,
+    SellerListComponent,
+    ConsultComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [PermissionGuard, FocusGuard, StockResolve],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
