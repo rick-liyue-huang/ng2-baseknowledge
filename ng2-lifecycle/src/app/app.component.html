@@ -1,0 +1,24 @@
+
+<!--<app-life [name]="title"></app-life>-->
+
+<!--<div class="parent">-->
+  <!--<h2>this is parent component</h2>-->
+  <!--<div>-->
+    <!--greeting: <input type="text" [(ngModel)]="greeting">-->
+  <!--</div>-->
+
+  <!--<div>-->
+    <!--name: <input type="text" [(ngModel)]="user.name">-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--<app-child [greeting]="greeting" [user]="user"></app-child>-->
+
+
+<div>
+  <h2>this is parent component</h2>
+  <div>stock name(unchangeable): <input [(ngModel)]="stockName"></div>
+  <div>stock name(changeable): <input [(ngModel)]="stock.name"></div>
+
+  <app-child [stockName]="stockName" [stock]="stock"></app-child>
+</div>
