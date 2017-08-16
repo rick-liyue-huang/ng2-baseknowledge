@@ -1,0 +1,18 @@
+
+<div>
+  this is parent component
+</div>
+<div>
+
+  <div>
+    <input type="text" placeholder="type search content" [(ngModel)]="search" />
+    <!--thie search keyword is: {{search}}, current price is: {{currentPrice | number: '2.2-2'}}-->
+  </div>
+
+  <hr>
+  <!--<app-stock-search [keyWord]="search" (searchResult)="searchResultHandler($event)" ></app-stock-search>-->
+  <app-stock-search [keyWord]="search" (addCart)="addCartHandler($event)" ></app-stock-search>
+
+  <app-stock-cart [stockInfo]="stockInfo"></app-stock-cart>
+</div>
+
