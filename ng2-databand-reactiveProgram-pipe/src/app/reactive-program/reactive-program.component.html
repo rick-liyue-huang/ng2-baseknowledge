@@ -1,0 +1,16 @@
+<p>
+  reactive-program works!
+</p>
+
+
+<input type="text" (keyup)="onKey($event)" >
+
+<input type="text" #myField (keyup)="onKey1(myField.value)">
+
+
+<hr>
+
+<input type="text" [formControl]="searchInput">
+
+<hr>
+

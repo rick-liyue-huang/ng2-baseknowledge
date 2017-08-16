@@ -47,6 +47,36 @@ the third one: one object
 
 {{}} and [(ngModel)]
 
+#### Rxjs
+
+based on the following codes
+
+need to import 'rxjs' lib.
+
+Observable (stream): one collection of data or events.
+Observer: one collection of callbacks, which knows how to listen the values sent by Observable.
+Subscription: is a Obseervable, and used to cancel regester
+Operators: the pure functions, and the developers can use these functions to deal with collection in functional programming way.
+
+here notice that:
+
+Observable 'call' Observer, and Observer 'regester' Observable.
+
+
+```
+Observable.from([1, 2, 3, 4])  // stream
+      .filter( e => e%2 == 0)  // filter out the even number
+      .map( e => e*e) // get the e square
+      .subscribe(
+
+        // the following three lines code are Observer
+        e => console.log(e),
+        err => console.error(err),
+        () => console.log('end')
+      );> console.log('end')
+      );
+```
+
 
 ##### pipe 
 

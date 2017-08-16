@@ -68,6 +68,8 @@ export class BindComponent implements OnInit {
     console.log('unchangeable html value attribute', event.target.getAttribute('value'));
   }
 
+
+
   doOnInput1(event) {
     this.name1 = event.target.value;
   }
