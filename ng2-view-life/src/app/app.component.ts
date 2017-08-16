@@ -13,6 +13,7 @@ export class AppComponent implements OnInit, AfterViewInit, AfterViewChecked {
   @ViewChild("child1")
   child1: ChildComponent;
 
+
   constructor() {}
 
   ngOnInit(): void {
