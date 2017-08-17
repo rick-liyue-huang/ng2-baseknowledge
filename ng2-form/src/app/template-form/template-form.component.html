@@ -1,0 +1,28 @@
+<form #myForm="ngForm" (ngSubmit)="createUser(myForm.value, myForm.valid)" novalidate>
+  <div>Nickname:<input ngModel required minlength="6" name="nickname" type="text" pattern="[a-zA-A0-9]+"></div>
+
+  <div [hidden]="!myForm.form.hasError('required','nickname')">
+    nickname is required
+  </div>
+  <div [hidden]="!myForm.form.hasError('minlength','nickname')">
+    nickname min length is 6
+  </div>
+  <div>Email:<input ngModel name="email" type="email"></div>
+  <div>Mobile:<input ngModel mobile name="mobile" type="number" (input)="onMobileInput(myForm)"></div>
+  <div [hidden]="mobileValid || mobilePristine">
+    <div [hidden]="!myForm.form.hasError('mobile','mobile')">
+      invalid mobile number
+    </div>
+  </div>
+  <div ngModelGroup="passwordInfo" password>
+    <div>Password:<input ngModel required name="password" type="password"></div>
+    <div [hidden]="!myForm.form.hasError('required','passwordInfo.password')">
+      password is required
+    </div>
+    <div>Confirm Password:<input ngModel name="passwordConfirm" type="password"></div>
+  </div>
+  <div [hidden]="!myForm.form.hasError('password','passwordInfo')">
+    {{myForm.form.getError('password', 'passwordInfo')?.description}}
+  </div>
+  <button type="submit">Register</button>
+</form>

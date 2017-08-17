@@ -1,0 +1,42 @@
+<form [formGroup]="formModel" (submit)="createUser()" >
+  <div>Nickname:<input [class.inputHasError]="formModel.get('nickname').invalid" formControlName="nickname" type="text" pattern="[a-zA-A0-9]+"></div>
+  <div [hidden]="!formModel.hasError('required','nickname')">
+    the nickname is required
+  </div>
+  <div [hidden]="!formModel.hasError('minlength','nickname')">
+    nickname min length is 6
+  </div>
+  <div>邮箱:
+    <ul formArrayName="emails">
+      <li *ngFor="let email of formModel.get('emails').controls;let i = index">
+        <input [formControlName]="i">
+      </li>
+    </ul>
+    <button type="button" (click)="addEmail()">Add Email</button>
+  </div>
+  <div>Mobile:<input formControlName="mobile"  type="number"></div>
+  <div [hidden]="formModel.get('mobile').valid || formModel.get('mobile').pristine">
+    <div [hidden]="!formModel.hasError('mobile','mobile')">
+      invalid mobile number
+    </div>
+  </div>
+  <div [hidden]="!formModel.get('mobile').pending">
+    is validating the mobile number
+  </div>
+  <div formGroupName="passwordInfo">
+    <div>password:<input formControlName="password" type="password"></div>
+    <div [hidden]="formModel.get('passwordInfo.password').valid || formModel.get('passwordInfo.password').untouched">
+      <div [hidden]="!formModel.hasError('required','passwordInfo.password')">
+        password is required
+      </div>
+    </div>
+    <div>Confirm password:<input formControlName="passwordConfirm" type="password"></div>
+  </div>
+  <div [hidden]="!formModel.hasError('password','passwordInfo')">
+    {{formModel.getError('password', 'passwordInfo')?.description}}
+  </div>
+  <button type="submit">Register</button>
+</form>
+<div>
+  {{formModel.status}}
+</div>
