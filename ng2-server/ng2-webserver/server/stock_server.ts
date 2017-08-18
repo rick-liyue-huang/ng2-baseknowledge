@@ -1,26 +1,49 @@
 
 import * as express from 'express';
 
-const app = express();
+import {Server} from 'ws';
 
-app.get('/', (req, res) => {
-    res.send('this is homepage');
+// const app = express();
+//
+// app.get('/', (req, res) => {
+//     res.send('this is homepage');
+// });
+//
+// app.get('/api/stock', (req, res) => {
+//     res.json(stocks);
+// });
+//
+// app.get('/stock/:id', (req, res) => {
+//     res.json(stocks.find( (stock) =>
+//         stock.id == req.params.id
+//     ))
+// });
+//
+//
+// app.listen(3000, 'localhost', () => {
+//     console.log('server is runing ! address is http://localhost:3000');
+// });
+
+
+// define the wsServer by webSocket
+const wsServer = new Server({port: 3001});
+
+// when this server connect with client, it will send message
+wsServer.on('connection', websocket => {
+    websocket.send('welcome to connect server');
+
+    websocket.on('message', message => {
+        console.log('received the message from client, and the message is: ' + message);
+    });
 });
 
-app.get('/stock', (req, res) => {
-    res.json(stocks);
-});
-
-app.get('/stock/:id', (req, res) => {
-    res.json(stocks.find( (stock) =>
-        stock.id == req.params.id
-    ))
-});
-
-
-app.listen(3000, 'localhost', () => {
-    console.log('server is runing ! address is http://localhost:3000');
-});
+setInterval(() => {
+    if (wsServer.clients) {
+        wsServer.clients.forEach( client => {
+            client.send('this is timer message');
+        });
+    }
+}, 2000);
 
 export class Stock {
 
@@ -46,3 +69,49 @@ const stocks:  Stock[] = [
     new Stock(7, 'the 7th one', 6.80, 3.0, ((3.0/5)*100).toFixed(2)  + '%', 'this is the seventh one', ['IT', 'Finance']),
     new Stock(8, 'the 8th one', 8.50, 5.0, ((5.0/5)*100).toFixed(2)  + '%', 'this is the eighth one', ['IT', 'Elec']),
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

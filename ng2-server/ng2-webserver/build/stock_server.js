@@ -1,21 +1,42 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = require("express");
-var app = express();
-app.get('/', function (req, res) {
-    res.send('this is homepage');
+var ws_1 = require("ws");
+// const app = express();
+//
+// app.get('/', (req, res) => {
+//     res.send('this is homepage');
+// });
+//
+// app.get('/api/stock', (req, res) => {
+//     res.json(stocks);
+// });
+//
+// app.get('/stock/:id', (req, res) => {
+//     res.json(stocks.find( (stock) =>
+//         stock.id == req.params.id
+//     ))
+// });
+//
+//
+// app.listen(3000, 'localhost', () => {
+//     console.log('server is runing ! address is http://localhost:3000');
+// });
+// define the wsServer by webSocket
+var wsServer = new ws_1.Server({ port: 3001 });
+// when this server connect with client, it will send message
+wsServer.on('connection', function (websocket) {
+    websocket.send('welcome to connect server');
+    websocket.on('message', function (message) {
+        console.log('received the message from client, and the message is: ' + message);
+    });
 });
-app.get('/stock', function (req, res) {
-    res.json(stocks);
-});
-app.get('/stock/:id', function (req, res) {
-    res.json(stocks.find(function (stock) {
-        return stock.id == req.params.id;
-    }));
-});
-app.listen(3000, 'localhost', function () {
-    console.log('server is runing ! address is http://localhost:3000');
-});
+setInterval(function () {
+    if (wsServer.clients) {
+        wsServer.clients.forEach(function (client) {
+            client.send('this is timer message');
+        });
+    }
+}, 2000);
 var Stock = (function () {
     function Stock(id, name, price, rating, percent, desc, categories) {
         this.id = id;
